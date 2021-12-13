@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	border:0;	
+	list-style: none;
+	box-sizing: 0;
+}
+
+
+.body{
+	display: flex;
+    justify-content: center;
+		
+	}
+
+.caja_principal{
+		display: flex;
+		justify-content: space-evenly;
+		max-width: 1000px;
+        width: 100%;
+		text-align: center;
+		background-image: url(images/28502hd.jpg);
+		background-size: cover;
+		background-position: center;
+		padding: 40px;
+		
+	}
+
+h1{
+	
+	color: #FFCA0F;
+	margin-bottom: 40px;
+	font-family: 'Galindo', cursive;
+	font-size: 60px;
+	text-shadow: 4px 4px 4px blue;
+}
+
+span{
+	color:#FF0606;
+}
+
+#canva, #nextPiece{
+	border-bottom: 3px solid blue;
+	border-left:  3px solid blue;
+	border-right: 3px solid blue;
+	border-radius: 5px;
+	box-shadow: 4px 4px 4px blue;
+}
+#score, #lines, #level{
+	color:cornsilk;
+	font-size: 20px;
+}
+.info{
+	color: cornsilk;
+	font-size: 20px;
+	border-radius: 5px;
+	box-shadow: 4px 4px 4px blue;
+	border: 3px solid blue;
+	margin: 20px;
+	padding: 10px;
+
+}
