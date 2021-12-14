@@ -2,12 +2,12 @@ let lasTime = 0
 let dropInterval = 500;
 let dropCounter = 0;
 let pause = false;
-const canvas = document.getElementById("canva");
+const canvas = document.getElementById("canva");//llamado al id canva
 const ctx = canvas.getContext("2d");
 const canvasNext = document.getElementById("nextPiece");
 const ctxNext = canvasNext.getContext("2d");
 const grid = createMatriz(15,23);
-const colors = [
+const colors = [//colores de las fichas
     null,
     "#A502FC",
     "#02FCFC",
@@ -18,7 +18,7 @@ const colors = [
     "#FC0293"
 
 ]
-const player = {
+const player = {//declaracion de valores iniciales
     pos : {x : 0, y : 0},
     matriz:null,
     next:null,
@@ -99,11 +99,10 @@ function createMatriz(width, height){
     return matriz;
 }   
 
-function collide(grid, player) {
+function collide(grid, player) {//detecta las paredes del canva para que la ficha no salga
     const matriz = player.matriz;
     const offset = player.pos;
     
-
     for (let y = 0; y<matriz.length; ++y){
         for( let x= 0; x<matriz[y].length; ++x){
             if(matriz[y][x]!=0 && (grid[y + offset.y] && grid[y + offset.y][x + offset.x])!==0){
@@ -115,7 +114,7 @@ function collide(grid, player) {
     return false;
 }
 
-function merge(grid, player){
+function merge(grid, player){//crea las nuevas piezas
     player.matriz.forEach((row,y)=>{
         row.forEach((value, x) =>{
             if(value!==0){
@@ -125,7 +124,7 @@ function merge(grid, player){
     });
 }
 
-function drawMatriz(matriz, offset) {
+function drawMatriz(matriz, offset) { //dibuja las fichas
     matriz.forEach((row, y) => {
         row.forEach((value, x) => {
             if(value!=0) {
@@ -143,7 +142,7 @@ function drawMatrizNext(matriz, offset){
     matriz.forEach((row, y) => {
         row.forEach((value, x) => {
             if(value!=0) {
-               ctxNext.fillStyle =colors[value]
+                ctxNext.fillStyle = colors[value]
                 ctxNext.fillRect(x+offset.x, y+offset.y, 1,1);
             }
         });
@@ -152,7 +151,7 @@ function drawMatrizNext(matriz, offset){
 
 function draw() {
     ctx.fillStyle ="#090424";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);//dibuja el canvas
     drawMatriz(grid,{x : 0, y : 0});
     drawMatriz(player.matriz, player.pos);
     drawMatrizNext(player.next, {x : 1, y : 1});
@@ -172,11 +171,11 @@ function gridSweep(){
         player.score+= rowCount * 10;
         player.lines++;
         rowCount *= 2;
-        if(player.lines%3===0) player.level++;
+        if(player.lines%3===0) player.level++;//contador de puntos lineas y nivel
     }
 }
 
-function update(time = 0) {
+function update(time = 0) {//refresca el juego
     if (pause) return;
    const deltaTime = time - lasTime;
     lasTime = time;
@@ -191,7 +190,7 @@ function update(time = 0) {
 
 function playerDrop(){
     player.pos.y++;
-    if(collide(grid, player)){
+    if(collide(grid, player)){//detiene la ficha cuando llaga al fondo
         player.pos.y--; 
         merge(grid,player);
         playerReset();
@@ -201,7 +200,7 @@ function playerDrop(){
     dropCounter=0
 }
 
-function playerMove(direction){
+function playerMove(direction){//detecta las coliciones laterales
 player.pos.x += direction;
     if(collide(grid, player)){
         player.pos.x-= direction;
@@ -229,7 +228,7 @@ function rotate(matriz){
              [matriz[x][y], matriz[y][x]] = [matriz[y][x], matriz[x][y]] ;
         }
     }
-    matriz.forEach(row => row.reverse());
+    matriz.forEach(row => row.reverse());//rotacion de las fichas
 }
 
 function playerReset(){
@@ -262,17 +261,17 @@ function fpause(pauser){
     }  else {
         document.getElementById("fondo_tetris").style.display="none";
         document.getElementById("sonido").play();
-        update();
+        update();//pausa
     }
 }
 
 function updateScore(){
     document.getElementById("score").innerHTML = player.score;
     document.getElementById("level").innerHTML = player.level;
-    document.getElementById("lines").innerHTML = player.lines;
+    document.getElementById("lines").innerHTML = player.lines;//llama los valores a pantalla
 }
 
-document.addEventListener("keydown",event =>{
+document.addEventListener("keydown",event =>{//funcionalidad de lod botones
 
     switch(event.key){
         case "ArrowDown":
