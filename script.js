@@ -1,6 +1,7 @@
 let lasTime = 0
 let dropInterval = 500;
 let dropCounter = 0;
+let pause = false;
 const canvas = document.getElementById("canva");
 const ctx = canvas.getContext("2d");
 const canvasNext = document.getElementById("nextPiece");
@@ -27,57 +28,67 @@ const player = {
     
 };
 ctx.scale(25,25);
-ctxNext.scale(19,19)
+ctxNext.scale(19,19);
 
-function createPiece(tipo){
-    if( tipo==="T"){
-        return[
-            [0,0,0],
-            [1,1,1],
-            [0,1,0] 
-        ];
-    }else if( tipo==="O"){
-        return[
-            [2,2],
-            [2,2],
-            
-        ];
-    }else if( tipo==="L"){
-        return[
-            [0,3,0],
-            [0,3,0],
-            [0,3,3] 
-        ];
-    }else if( tipo==="J"){
-        return[
-            [0,4,0],
-            [0,4,0],
-            [4,4,0] 
-        ];
-    }else if( tipo==="I"){
-        return[
-            [0,5,0,0],
-            [0,5,0,0],
-            [0,5,0,0],
-            [0,5,0,0] 
-        ];
-    }else if( tipo==="S"){
-        return[
-            [0,6,6],
-            [6,6,0],
-            [0,0,0],
-            
-        ];
-    }else if( tipo==="Z"){
-        return[
-            [7,7,0],
-            [0,7,7],
-            [0,0,0],
-           
-        ];
-    }
+function createPiece(tipo) {
+    switch(tipo){
 
-}
+        case "T":
+            return[
+                [0,0,0],
+                [1,1,1],
+                [0,1,0] 
+            ];
+            break;
+    
+        case "O":
+            return [
+                [2,2],
+                [2,2],
+                
+            ];
+            break;
+        case "L":
+            return[
+                [0,3,0],
+                [0,3,0],
+                [0,3,3]
+            ];
+            break;
+        case "J":
+            return[
+                [0,4,0],
+                [0,4,0],
+                [4,4,0] 
+                ];
+            break;
+        case"I":
+            return[
+                [0,5,0,0],
+                [0,5,0,0],
+                [0,5,0,0],
+                [0,5,0,0] 
+            ];
+            break;
+        case "S":
+             return[
+                [0,6,6],
+                [6,6,0],
+                [0,0,0]
+                    
+                ];
+             
+        case"Z":
+            return[
+                [7,7,0],
+                [0,7,7],
+                [0,0,0]
+            
+            ];
+            break;
+    };
+
+};
 function createMatriz(width, height){
     const matriz = [];
 
@@ -91,11 +102,13 @@ function createMatriz(width, height){
 function collide(grid, player) {
     const matriz = player.matriz;
     const offset = player.pos;
+    
 
     for (let y = 0; y<matriz.length; ++y){
         for( let x= 0; x<matriz[y].length; ++x){
             if(matriz[y][x]!=0 && (grid[y + offset.y] && grid[y + offset.y][x + offset.x])!==0){
             return true;
+            
             }
         }
     }
@@ -164,6 +177,7 @@ function gridSweep(){
 }
 
 function update(time = 0) {
+    if (pause) return;
    const deltaTime = time - lasTime;
     lasTime = time;
     dropCounter += deltaTime;
@@ -220,7 +234,7 @@ function rotate(matriz){
 
 function playerReset(){
     const pieces = 'ILJOTSZ'
-    dropInterval = 500 -(player.level*100);
+    dropInterval = 500 -(player.level*50);
     if(player.next===null){
         player.matriz=createPiece(pieces[pieces.length * Math.random() | 0]);
     }else (player.matriz =player.next);
@@ -235,7 +249,20 @@ function playerReset(){
         player.level = 0;
         player.lines = 0;
         updateScore();
+        alert("GAME OVER")
+    }
+    
+}
 
+function fpause(pauser){
+    pause=pauser
+    if(pauser){
+        document.getElementById("fondo_tetris").style.display="block";
+        document.getElementById("sonido").pause();
+    }  else {
+        document.getElementById("fondo_tetris").style.display="none";
+        document.getElementById("sonido").play();
+        update();
     }
 }
 
@@ -246,15 +273,25 @@ function updateScore(){
 }
 
 document.addEventListener("keydown",event =>{
-    if(event.key=="ArrowDown"){
-      playerDrop();  
-    }else if(event.key=="ArrowLeft"){
-        playerMove(-1);
-    }else if(event.key=="ArrowRight"){
-        playerMove(1);
-    }else if(event.key=="ArrowUp"){
-        playerRotate();
-    }
+
+    switch(event.key){
+        case "ArrowDown":
+            playerDrop();
+            break;
+        
+        case "ArrowLeft":
+            playerMove(-1);
+            break;
+
+        case "ArrowRight":
+            playerMove(1);
+            break;
+
+        case "ArrowUp":
+            playerRotate();
+            break;
+
+  }
 });   
 playerReset();
 updateScore();

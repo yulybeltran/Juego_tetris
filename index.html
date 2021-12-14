@@ -10,10 +10,26 @@
     
     
 </head>
-<body  class="body container">
+
+<body id="body" class="body container">
+    <audio id="sonido" src="audio/" type="audio/mp3" loop autoplay></audio>
     <main class="caja_principal">
-        <div>
+        <div class="caja_info">
         <h1><span>T</span>E<span>T</span>R<span>i</span>S</h1>
+        
+         
+        <div class="fondo_tetris" id="fondo_tetris">
+           
+            <div  id="s_pause" class="s_pause">
+                
+                <div class="menu">
+                   <h2>Pausa</h2> 
+                </div>
+               
+                <button onclick="fpause(false)" class="btn">Reanudar</button>
+            </div>    
+            
+        </div>
         <div class="info">
             <h3>Puntos</h3>
             <div id="score"></div>
@@ -31,6 +47,11 @@
         
         
         <canvas id="nextPiece" width="100" height="100"></canvas>
+    <div>
+        <button  class="btn" onclick="fpause(true)">Pausar</button>
+        
+    </div>
+   
     </div>
         <canvas id="canva" width="375" height="570"></canvas>
     </main>
