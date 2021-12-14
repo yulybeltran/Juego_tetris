@@ -156,7 +156,7 @@ audio{
 		align-items: center;
 	}
 	#canva{
-		margin: 10px;
+		margin-left: 10px;
 		width: 80%;
 		border-bottom: 1px solid blue;
 		border-left:  1px solid blue;
