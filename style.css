@@ -7,29 +7,26 @@
 	box-sizing: 0;
 }
 
-
 .body{
 	display: flex;
     justify-content: center;
 		
-	}
+}
 
 .caja_principal{
-		display: flex;
-		justify-content: space-evenly;
-		max-width: 1000px;
-        width: 100%;
-		text-align: center;
-		background-image: url(images/28502hd.jpg);
-		background-size: cover;
-		background-position: center;
-		padding: 40px;
-		
-	}
-
+	display: flex;
+	justify-content: space-evenly;
+	max-width: 1000px;
+    width: 100%;
+	text-align: center;
+	background-image: url(images/28502hd.jpg);
+	background-size: cover;
+	background-position: center;
+	padding: 40px;
+			
+}
 
 h1{
-	
 	color: #FFCA0F;
 	margin-bottom: 40px;
 	font-family: 'Galindo', cursive;
@@ -42,6 +39,7 @@ span{
 }
 
 #canva{
+
 	border-bottom: 3px solid blue;
 	border-left:  3px solid blue;
 	border-right: 3px solid blue;
@@ -50,14 +48,17 @@ span{
 }
 
 #nextPiece{
+	width: 50%;
 	border: 3px solid blue;
 	border-radius: 5px;
 	box-shadow: 4px 4px 4px blue;
 }
+
 #score, #lines, #level{
 	color:cornsilk;
 	font-size: 16px;
 }
+
 .info{
 	color: cornsilk;
 	font-size: 16px;
@@ -68,8 +69,10 @@ span{
 	padding: 5px;
 
 }
+
  .btn{
 	 min-width: 120px;
+	 width: 50%;
 	color: cornsilk;
 	background-color: #FF0606;
 	font-size: 18px;
@@ -102,15 +105,75 @@ span{
 	align-items: center;
 }
 
-.menu{
-font-size: 18px;
-color: whitesmoke;
-margin: 10px;
-}
 audio{
+
 	border: 3px solid #FFCA0F;
 	border-radius: 30px;
 	max-width: 150px;
 	max-height: 30px;
 	margin: 10px;
+}
+
+@media screen and (max-width:700px){
+  		h1{
+		font-size: 28px;
+		margin-bottom: 10px;
+		}
+
+	  .info{
+		font-size: 8px;
+		margin: 10px;
+		padding: 5px;
+		box-shadow: 2px 2px 2px blue;
+		border: 1px solid blue;
+		margin: 10px;
+	}
+
+	#score, #lines, #level{
+		font-size: 8px;
+	}
+
+	.btn{
+		min-width:80px;
+		width: 50%;
+		font-size: 12px;
+	}
+
+	.s_pause{
+		position: fixed;
+		top:20%;
+		left: 24%;
+		width: 150px;
+		height: 90px;
+		box-shadow: 2px 2px 2px blue;
+		border: 1px solid blue;
+		align-items: center;
+	}
+
+	.caja_principal{
+		min-height: 400px;
+		height: 100%;
+		align-items: center;
+	}
+	#canva{
+		margin: 10px;
+		width: 80%;
+		border-bottom: 1px solid blue;
+		border-left:  1px solid blue;
+		border-right: 1px solid blue;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px blue;
+	}
+	
+	#nextPiece{
+		width: 50%;
+		border: 1px solid blue;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px blue;
+	}
+
+	.fondo_tetris{
+		height: 300px;
+		
+	}
 }
