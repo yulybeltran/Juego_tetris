@@ -187,4 +187,16 @@ audio{
 		height: 300px;
 		
 	}
+
+	.btn2{
+		min-width: 30px;
+		color: cornsilk;
+		background-color: #FF0606;
+		font-size: 16px;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px #FF0606;
+		border: 3px solid #FF0606;
+		margin: 5px;
+		padding: 5px;
+	}
 }
