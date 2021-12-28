@@ -292,6 +292,27 @@ document.addEventListener("keydown",event =>{//funcionalidad de lod botones
 
   }
 });   
+
+document.querySelector("#izquierda").addEventListener("click", () => {
+    if(dropInterval- 1) {
+      player.pos.x--;
+      if (collide(grid,player)) player.pos.x++;
+    }
+  });
+  
+  document.querySelector("#derecha").addEventListener("click", () => {
+    if(dropInterval + 1) {
+      player.pos.x++;
+      if (collide(grid, player)) player.pos.x--;
+    }
+  });
+  
+
+  document.querySelector("#cambiar").addEventListener("click", () => {
+    player.ctx = playerRotate(player.matriz, -1);
+});
+  
+ 
 playerReset();
 updateScore();
 update();
